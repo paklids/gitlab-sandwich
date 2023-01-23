@@ -1,0 +1,14 @@
+## `docker-compose run terra`
+version: '3.8'
+
+services:
+  terra:
+    image: hashicorp/terraform:1.3.7
+    volumes:
+      - .:/root/infra                ## mount this local dir to access tf files
+      - ${HOME}/.aws:/root/.aws:ro   ## load readonly aws creds from file
+    working_dir: /root/infra
+    stdin_open: true
+    tty: true
+    command: /bin/sh
+    entrypoint: ""
